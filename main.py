@@ -7,6 +7,8 @@ from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
+from parser import Stock
+
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 SPREADSHEET_ID = os.getenv('SPREADSHEET_ID')
@@ -38,13 +40,14 @@ def main():
         range=RANGE_NAME,
     ).execute()
     values = result.get('values', [])
-
+    stock_list = []
     if not values:
         print('No data found.')
     else:
         for row in values:
-            print(row)
+            stock_list.append(Stock(*row))
+    return stock_list
 
 
 if __name__ == '__main__':
-    main()
+    stocks = main()
