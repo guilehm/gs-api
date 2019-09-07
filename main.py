@@ -9,8 +9,8 @@ from google.auth.transport.requests import Request
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 
-SAMPLE_SPREADSHEET_ID = '14x0KrsstPQ5BG10hGrmMM0Yd-5f4KCA6hgU40dwIQGI'
-SAMPLE_RANGE_NAME = 'Gastos!C4:AL7'
+SPREADSHEET_ID = os.getenv('SPREADSHEET_ID')
+RANGE_NAME = os.getenv('SPREADSHEET_ID')
 
 
 def main():
