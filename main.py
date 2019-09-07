@@ -27,3 +27,24 @@ def main():
             creds = flow.run_local_server(port=0)
         with open('token.pickle', 'wb') as token:
             pickle.dump(creds, token)
+
+    service = build('sheets', 'v4', credentials=creds)
+
+    # Call the Sheets API
+    print('calling sheets API')
+    sheet = service.spreadsheets()
+    result = sheet.values().get(
+        spreadsheetId=SPREADSHEET_ID,
+        range=RANGE_NAME,
+    ).execute()
+    values = result.get('values', [])
+
+    if not values:
+        print('No data found.')
+    else:
+        for row in values:
+            print(row)
+
+
+if __name__ == '__main__':
+    main()
