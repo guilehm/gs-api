@@ -9,6 +9,7 @@ verify_ssl = true
 google-api-python-client = "*"
 google-auth-httplib2 = "*"
 google-auth-oauthlib = "*"
+jupyter = "*"
 
 [requires]
 python_version = "3.6"
